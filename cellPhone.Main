@@ -1,0 +1,85 @@
+#include <iostream>
+#include <string>
+#include "cellPhone.h"
+using namespace std;
+
+int main()
+{
+    char turnDeviceOn;
+
+    cout << "Hello User. Would you like to turn on this cell phone? (Y/N)\n";
+    cin >> turnDeviceOn;
+    cout << endl;
+
+    switch (turnDeviceOn)
+    {
+        case 'y':
+        case 'Y':
+        {
+            cellPhone device;
+            string fName, lName, hNumber, mNumber;
+            char userInput;
+            while (device.getPowerState())
+            {
+                cout << "A. Turn off Cell Phone\n";
+                cout << "B. Add A New Contact\n";
+                cout << "C. Display Contact Information\n";
+                cout << "D. Dial Contact\n";
+                cin >> userInput;
+                cout << endl;
+                switch (userInput)
+                {
+                    case 'a':
+                    case 'A':
+                    {
+                        device.powerDown();
+                        break;
+                    }
+
+
+                    case 'b':
+                    case 'B':
+                    {
+                        cout << "First name: " << endl;
+                        cin >> fName;
+                        cout << "Last name: " << endl;
+                        cin >> lName;
+                        cout << "Home number: " << endl;
+                        cin >> hNumber;
+                        cout << "Mobile number: " << endl;
+                        cin >> mNumber;
+                        device.newContact(fName, lName, hNumber, mNumber);
+                        break;
+                    }
+                    case 'c':
+                    case 'C':
+                    {
+                        cout << "Search number: " << endl;
+                        cin >> hNumber;
+                        device.displayContactNumberInformation(hNumber);
+                        break;
+                    }
+                    case 'd':
+                    case 'D':
+                    {
+                        cout << "First name: " << endl;
+                        cin >> fName;
+                        cout << "Last name: " << endl;
+                        cin >> lName;
+                        device.dialContact(fName, lName);
+                        break;
+                    }
+
+                }
+            }
+            break;
+        }
+
+        case 'n':
+        case 'N':
+            cout << "Thank you. Please restart the program when you wish to use the device." << endl;
+            break;
+    }
+
+    return 0;
+}

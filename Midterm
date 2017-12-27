@@ -1,0 +1,268 @@
+//Question 1
+#include<iostream>
+using namespace std;
+int main()
+{
+    double triangle[5][2] = { 2.4, 5,3, 2.1,3.22, 6.35,3.2, 7.1,2, 5 };
+    for (int a = 0; a<5; a++)   //Loops for each of the 5 triangles
+    {
+        cout << "Base: " << triangle[a][0] << " inches\n";
+        cout << "Height: " << triangle[a][1] << " inches\n";
+        cout << "Area: " << 0.5*(triangle[a][0] * triangle[a][1]) << " inches squared\n";
+    }
+    return 0;
+}
+
+//Question 2
+#include <stdio.h>
+
+int main()
+{
+    int a, i, j;
+
+    char originalArray[7] = {'c', 'i', 's', '2', '2', '0', '0'};
+    char reverseArray[7];
+
+    a=sizeof(originalArray);
+    for (i = a- 1, j = 0; i >= 0; i--, j++)
+        reverseArray[j] = originalArray[i];
+
+    for (i = 0; i < a; i++)
+        originalArray[i] = reverseArray[i];
+
+    printf("Reverse array is\n");
+
+    for (i = 0; i < a; i++)
+        printf("%c-", originalArray[i]);
+
+    return 0;
+}
+
+//Question 3
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct UniversityClass {
+    string courseName;
+    string courseCode;
+    string prerequisites[3];
+};
+
+struct FacultyMember {
+    string firstName, lastName, emailAddress;
+    int phoneNumber;
+};
+
+struct DateofBirth {
+    int day, month, year;
+};
+
+int main() {
+    int m;
+    const int num_classes = 3;
+    UniversityClass student;
+
+    FacultyMember professor;
+    DateofBirth date;
+
+
+    cout << "Enter the course name: ";
+    cin >> student.courseName;
+
+    cout << "Enter the course code: ";
+    cin >> student.courseCode;
+
+    cout << "Enter the prerequisite courses:\n";
+    for (int i = 0; i < num_classes; i++) {
+        cout << "Max number of prerequisite classes you're allowed to enter is 3.\n"
+             << "Prerequisite #" << (i + 1);
+        cout << ": ";
+        cin >> student.prerequisites[i];
+        cout << endl;
+    }
+    cout << "This is information about the professor.\n";
+    cout << "Enter the professor's first name: \n";
+    cin >> professor.firstName;
+    cout << "Enter the professor's last name: \n";
+    cin >> professor.lastName;
+    cout << "Enter the professor's email address: \n";
+    cin >> professor.emailAddress;
+    cout << "Enter the professor's phone number: \n";
+    cin >> professor.phoneNumber;
+
+    cout << "Enter the date of birth of the professor:(DD/MM/YYYY) \n";
+    cout << "Day: ";
+    cin >> date.day;
+    cout << "Month: ";
+    cin >> date.month;
+    cout << "Year: ";
+    cin >> date.year;
+    cout << endl << endl;
+
+    //Results:
+    cout << "The data you enter is:\n";
+    cout << "Course Name: " << student.courseName << endl;
+    cout << "Course Code: " << student.courseCode << endl;
+    for (int i = 1; i < num_classes; i++) {
+        cout << "Prerequisites # " << i << ":" << student.prerequisites[i] << endl;
+    }
+    cout << "Professor Name: " << professor.firstName << professor.lastName << endl;
+    cout << "Professor Email: " << professor.emailAddress << endl;
+    cout << "Professor Phone Number: " << professor.phoneNumber << endl;
+    cout << "Professor Date of Birth: " << date.day << " / " << date.month << " / " << date.year << endl;
+
+    return 0;
+
+}
+
+//Question 4
+#include <iostream>
+
+using namespace std;
+struct IsoscelesTriangle {
+    double firstSide;
+    double secondSide;
+    double thirdSide;
+};
+int main()
+{
+    struct IsoscelesTriangle i;
+    cout << "Welcome to the Triangle Evaluation Program" << endl;
+    cout<<"Enter the first side:"<<endl;
+    cin >> i.firstSide;
+    cout<<"Enter the second side:"<<endl;
+    cin >> i.secondSide;
+    cout<<"Enter the third side:"<<endl;
+    cin >> i.thirdSide;
+    if(i.firstSide == i.secondSide|| i.firstSide ==i.thirdSide ||i.thirdSide== i.secondSide)
+    {
+        cout<<"This is an Isosceles Triangle"<<endl;
+    }
+    else
+    {
+        cout<<"This is not an Isosceles Triangle"<<endl;
+    }
+    return 0;
+}
+
+//Question 5a
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+struct PlayerRecord {
+    string name;
+    string position;
+    char starter;
+    int rebounds;
+    int pointsScored;
+    int steals;
+    int blocks;
+    int assists;
+
+};
+
+int main() {
+    char starterinput;
+    char again;
+    PlayerRecord person;
+
+    //To open a file
+
+    ofstream dataFile;
+    dataFile.open("playerrecords.txt");
+
+    cout << "Enter the data for upto 12 Players.\n";
+    for (int i = 1; i <= 12; i++)
+    {
+        cout << "Enter the following data about the player " << i << " :\n";
+        cout << "Name: ";
+        cin>>person.name;
+        cout << "Position: ";
+        cin >> person.position;
+        cin.ignore();//skip over the remaining new line
+        cout << "Starter (Y/N): ";
+        cin >> starterinput;
+        cout << "Number of Rebounds: ";
+        cin >> person.rebounds;
+        cout << "Number of Points Scored: ";
+        cin >> person.pointsScored;
+        cout << "Number of Steals: ";
+        cin >> person.steals;
+        cout << "Number of Blocks: ";
+        cin >> person.blocks;
+        cout << "Number of Assists: ";
+        cin >> person.assists;
+
+        //to write the contents to the file
+
+        dataFile << person.name << endl;
+        dataFile << person.position << endl;
+        dataFile << person.starter << endl;
+        dataFile << person.rebounds << endl;
+        dataFile << person.pointsScored << endl;
+        dataFile << person.steals << endl;
+        dataFile << person.blocks << endl;
+        dataFile << person.assists << endl;
+
+
+        //Determine whether the user wants to write another record
+        if (i <= 11)
+        {
+            cout << "Do you want to continue (Y/N): ";
+            cin >> again;
+            again = tolower(again);
+            if (again == 'y')
+            {
+                cin.ignore();
+            }
+            else
+            {
+                break;
+            }
+
+        }
+        if (i == 12)
+        {
+            cout << "Data entered for 12 players";
+            break;
+        }
+
+    }
+    dataFile.close();
+
+    return 0;
+}
+
+//Question 5b
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+
+int main() {
+    ifstream inputFile;
+
+    string name;
+    string position;
+    char starter;
+    int rebounds;
+    int pointsScored;
+    int steals;
+    int blocks;
+    int assists;
+
+    inputFile.open("playerrecords.txt");
+    cout << "Now reading data from file...\n";
+    while (inputFile >> name >> position >> starter >> rebounds >> pointsScored >> steals >> blocks >> assists)
+    {
+        cout << "Player Name:  " << name << endl;
+        cout << "Player Position:  " << position << endl;
+        cout << "Starter: " << starter << endl;
+        cout << "Stat Line: " << pointsScored << "points - " << assists << " assists -" << rebounds
+             << " rebounds - " << steals << " steals - " << blocks << " blocks - \n";
+    }
+    return 0;
+}
